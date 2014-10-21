@@ -1,0 +1,181 @@
+// Colors
+$barColor: tomato
+$secondColor :lightgray
+$overlayColor: #1f2439
+$backColor: #1f2439
+$secondBackColor : #03abd6
+$D:200px
+$d:190px
+$fontsize:58px
+$frontColor:#ffffff
+$header-height:0px
+$wrap-padding : 20px
+$btn-width : 50px
+
+body
+  margin : 0
+  background-color: $backColor
+  font-family: ROBOTO,sans-serif,"microsoft yahei"
+  color : $frontColor
+    -webkit-transition: all 1s
+  -moz-transition: all 1s
+  -ms-transition: all 1s
+  -o-transition: all 1s
+  transition: all 1s
+body.pre
+  background-color: $secondBackColor
+  .progress-radial
+    border-color: $secondBackColor
+  .progress-radial .overlay
+    background-color: $secondBackColor
+  .project #J_ProTitle
+    color: #fff
+.wrap
+  margin: 0 auto
+  margin-top : $header-height + 15px
+  width: $D
+  position: relative
+  height : $D
+
+/* -------------------------------------
+ * Bar container1
+ * ------------------------------------- */
+.progress-radial
+  float: left
+  margin-right: 30px
+  position: relative
+  width: $D
+  height: $D
+  border-radius: 50%
+  border: 2px solid $backColor // remove gradient color
+  background-color: $barColor // default 100%
+
+/* -------------------------------------
+ * Optional centered circle w/text
+ * ------------------------------------- */
+.progress-radial .overlay
+  position: absolute
+  width: $d
+  height: $d
+  background-color: $overlayColor
+  border-radius: 50%
+  margin-left: ($D -$d)/2
+  margin-top: ($D -$d)/2
+  text-align: center
+  line-height: $d
+  font-size: $fontsize
+    -webkit-transition: all 1s
+  -moz-transition: all 1s
+  -ms-transition: all 1s
+  -o-transition: all 1s
+  transition: all 1s
+
+/* -------------------------------------
+ * Mixin for progress-% class
+ * ------------------------------------- */
+
+$step: 1 // step of % for created classes
+
+$loops: round(100 / $step)
+$increment: 360 / $loops
+$half: round($loops / 2)
+@for $i from 0 through $loops
+  .progress-#{$i*$step}
+    @if $i < $half
+      $nextdeg: 90deg + ( $increment * $i )
+      background-image: linear-gradient(90deg, $secondColor 50%, transparent 50%, transparent), linear-gradient($nextdeg, $barColor 50%, $secondColor 50%, $secondColor)
+    @else
+      $nextdeg: -90deg + ( $increment * ( $i - $half ) )
+      background-image: linear-gradient($nextdeg, $barColor 50%, transparent 50%, transparent), linear-gradient(270deg, $barColor 50%, $secondColor 50%, $secondColor)
+
+/* -------------------------------------
+ * header
+ * ------------------------------------- */
+.header
+  height: $header-height
+  position: fixed
+  top: 0
+  width: 100%
+  text-align: center
+  line-height: $header-height
+  color : #fff
+  //for now
+  font-family: "microsoft yahei"
+  font-size : 17px
+  background-color: $secondBackColor
+
+/* -------------------------------------
+ * btn
+ * ------------------------------------- */
+.btn-left
+  width: $btn-width
+  padding: 15px
+  height: 30
+  position: fixed
+  top : $header-height
+  left : 0
+  &.restart i
+    width: 0
+    height: 0
+    border-width: 10px 0 10px 15px
+    border-color: transparent transparent transparent #fff
+    border-style: solid
+    padding: 0
+    margin: 0px 2px
+    display: block
+  &.pause i
+    border-style: solid
+    border-color: #fff
+    margin: 0px
+    padding: 0
+    height: 20px
+    width: 10px
+    border-width: 0 5px
+    display: block
+.btn-right
+  width: $btn-width
+  padding: 15px
+  height: 30
+  position: fixed
+  top : $header-height
+  right : 0
+  text-align: right
+  i
+    background-image: url(../images/refresh.png)
+    background-size: 20px
+    width: 20px
+    height: 20px
+    display: inline-block
+.round
+  position: absolute
+  top : $wrap-padding
+  font-size : 18px
+  text-align: center
+  width: 100%
+
+.status
+  position: absolute
+  bottom : $wrap-padding
+  font-size : 18px
+  text-align: center
+  width: 100%
+
+/* -------------------------------------
+ * projects
+ * ------------------------------------- */
+.project
+  text-align: center
+.project #J_ProTitle
+  line-height: 40px
+  font-size : 20px
+  word-break: break-all
+  padding: 0 15px
+  margin: 0
+  color: $secondBackColor
+  small
+    line-height: 20px!important
+    font-size: 14px
+    margin: 0
+    padding: 0
+.project img
+  height : 120px

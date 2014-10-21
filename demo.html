@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta   http-equiv= "Content-Type "   content= "text/html;   charset=UTF-8 ">
+    <script>
+        var timer = 0;
+        window.onload=function(){
+            timer = setInterval("clock()",1000)
+        };
+        function clock(){
+            var a = document.getElementById("demo");
+            var time = parseInt(a.innerHTML);
+            a.innerHTML = time-1;
+        }
+
+        function pause(){
+            clearInterval(timer);
+        }
+        function restart(){
+            timer = setInterval("clock()",1000)
+        }
+    </script>
+</head>
+<body>
+<div  id="demo" onmouseover="pause()" onmouseout="restart()" style="border:1px solid black">
+    30
+</div>
+</body>
+</html> 

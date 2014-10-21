@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>7分钟快速健身</title>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<div id="J_Pause" class="btn-left"><i></i></div>
+<div id="J_Reset" class="btn-right"><i></i></div>
+<div class="wrap">
+    <div id="J_Progress" class="progress-radial progress-0">
+        <div id="J_Time" class="overlay">
+            START
+        </div>
+    </div>
+    <div id="J_Round" class="round"></div>
+    <div id="J_Status" class="status"></div>
+</div>
+<div class="project">
+    <div id="J_ProTitle">Jumping jacks——开合跳</div>
+    <img id="J_ProImg" src="images/1.png" alt=""/>
+</div>
+<script src="js/main.js?v=11"></script>
+<script src="js/faxianjie.js"></script>
+<script language=javascript>
+    var g = {
+        gameid : "m7",
+        title : "7分钟快速健身,跟着我锻炼7分钟，相当于一次长跑",
+        content : "美国ACSM（美国运动医学会）推荐，锻炼7分钟超越一次长跑的健身方法",
+        scorenamel :  "坚持",
+        scorenamer:  "轮",
+        cansubmit : true,
+        shareconfirml : "你",
+        shareconfirmr : ",快告诉你的小伙伴们吧！分享到朋友圈后，还可以把成绩提交到全球排行榜呢~"
+    };
+    var game9g = new Game9G(g.gameid);
+    game9g.shareData.title = g.title;
+    game9g.shareData.content = g.content;
+
+    function goHome() {
+        window.location = game9g.homeurl;
+    }
+    function clickMore() {
+        if ((window.location + "").indexOf("f=zf", 1) > 0) {
+            window.location = game9g.gzurl;
+        }
+        else {
+            goHome();
+        }
+    }
+
+    function dp_Ranking() {
+        window.location = game9g.homeurl;
+    }
+
+
+    function dp_submitScore(title,score) {
+        game9g.score = score;
+        game9g.scoreName = g.scorenamel + score + g.scorenamer;
+        game9g.shareData.title = "我"+ title;//此处需要单独填写
+        window.shareData.tTitle = game9g.shareData.title;
+        game9g.cansubmit = g.cansubmit;
+        game9g.utils.shareConfirm(g.shareconfirml + title + g.shareconfirmr, dp_share);
+    }
+
+    function dp_share() {
+        game9g.share();
+
+    }
+</script>
+<div style="display: none;">
+    <script src="../faxianjie.js"></script>
+</div>
+<div id=share style="display: none">
+    <img width="100%" src="http://www.faxianjie.com/share.png"
+         style="position: fixed; z-index: 9999; top: 0; left: 0; display: "
+         ontouchstart="document.getElementById('share').style.display='none';"/>
+</div>
+</body>
+</html>
