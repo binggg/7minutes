@@ -37,7 +37,7 @@ A light application of fitness 一个健身的轻应用
 
 * **SASS** 使用sass可以高效编写css文件，尤其是中间圆环进度的样式
 
-* **CSS3** 使用CSS的角度渐变，实现了圆环的进度样式
+* **CSS3** 使用CSS的线性渐变，实现了圆环的进度样式
 
 * **HTML5** 本地存储，音频技术，离线缓存
 
