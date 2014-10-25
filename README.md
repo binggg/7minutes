@@ -39,7 +39,7 @@ A light application of fitness 一个健身的轻应用
 
 * **CSS3** 使用CSS的线性渐变，实现了圆环的进度样式
 
-* **HTML5** 本地存储，音频技术，离线缓存
+* **HTML5** 本地存储，音频技术，离线缓存,Web worker
 
 * **JS** 主要功能采用js编写
 
