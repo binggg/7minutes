@@ -258,15 +258,20 @@ function getText(obj) {
 
 // 后台运行
 var w;
+var timer2 = 0;
+
 
 function startWorker() {
     if (typeof(Worker) !== "undefined") {
         if (typeof(w) == "undefined") {
             w = new Worker("js/checkCacheStatus.js");
         }
-        setTimeout("console.log(window.applicationCache)",50);
+        timer2 = setInterval("w.postMessage(window.applicationCache.status)",100);
         w.onmessage = function (event) {
-            alert(event.data);
+            if ( event.data == "已缓存" ) {
+                stopWorker();
+                clearInterval(timer2);
+            }
             document.getElementById("J_Status").innerHTML = event.data;
         };
     }
